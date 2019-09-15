@@ -66,9 +66,9 @@ public class BaseFunc {
 
     public void openCategories(By locator, String categoryName) {
         List<WebElement> categories = getAllElements(locator);
-        for (int i = 0; i < categories.size(); i++) {
-            if (categories.get(i).getText().equals(categoryName)) {
-                categories.get(i).click();
+        for (WebElement category : categories) {
+            if (category.getText().equals(categoryName)) {
+                category.click();
                 break;
             }
         }
@@ -94,8 +94,7 @@ public class BaseFunc {
 
     public String getCssValue(By locator) {
         WebElement element = driver.findElement(locator);
-        return ((JavascriptExecutor) driver)
-                .executeScript
+        return jse.executeScript
                         ("return window.getComputedStyle(arguments[0], ':after').getPropertyValue('border-color');",
                                 element).toString();
     }

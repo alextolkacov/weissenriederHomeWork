@@ -21,6 +21,7 @@ public class DataValidationPage {
     private final By ERROR_NOTIFICATION = By.xpath(".//div[@class = 'dx-overlay-content dx-resizable']");
     private final By BORDER = By.xpath(".//div[@class = 'dx-highlight-outline dx-pointer-events-target']");
     private final String IFRAME_ID = "demoFrame";
+    private String borderColor;
 
     public DataValidationPage(BaseFunc baseFunc) {
         this.baseFunc = baseFunc;
@@ -61,7 +62,7 @@ public class DataValidationPage {
             baseFunc.clear(NEW_EMAIL_INPUT_FIELD);
             addNewEmail(email);
             baseFunc.pressEnterBtn();
-            String borderColor = baseFunc.getCssValue(BORDER);
+            borderColor = baseFunc.getCssValue(BORDER);
             Assertions.assertFalse(baseFunc.isElementPresent(ERROR_NOTIFICATION), "No error message appeared");
             Assertions.assertTrue(borderColor.contains("rgba(217, 83, 79, 0.4)"));
         }
@@ -72,8 +73,8 @@ public class DataValidationPage {
             baseFunc.clear(NEW_EMAIL_INPUT_FIELD);
             addNewEmail(email);
             baseFunc.pressEnterBtn();
-            Assertions.assertTrue(baseFunc.getElement(BORDER).getCssValue("border-color")
-                    .contains("rgba(92, 184, 92, 0.5)"), "Green border not appeared");
+            borderColor = baseFunc.getCssValue(BORDER);
+            Assertions.assertTrue(borderColor.contains("rgba(92, 184, 92, 0.5)"), "Green border not appeared");
         }
     }
 }
