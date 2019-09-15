@@ -66,9 +66,9 @@ public class BaseFunc {
 
     public void openCategories(By locator, String categoryName) {
         List<WebElement> categories = getAllElements(locator);
-        for (WebElement category : categories) {
-            if (category.getText().equals(categoryName)) {
-                category.click();
+        for (int i = 0; i < categories.size(); i++) {
+            if (categories.get(i).getText().equals(categoryName)) {
+                categories.get(i).click();
                 break;
             }
         }
